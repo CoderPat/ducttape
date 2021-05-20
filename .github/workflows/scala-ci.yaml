@@ -23,7 +23,7 @@ jobs:
         sbt "set test in assembly := {}" clean assembly
         ./build-support/dist.sh
         echo `readlink dist/ducttape-current`
-        VERSION=$(cat $DUCTTAPE/version.info) 
+        VERSION=$(cat version.info) 
         cp dist/ducttape-${VERSION} dist/ducttape
 
     - uses: actions/upload-artifact@master
