@@ -4,6 +4,7 @@
 *~
 *.class
 *#
+!.github/
 .metadata/.lock
 .metadata/.plugins
 .settings
@@ -24,9 +25,7 @@ tmp/
 /*.tape
 project/
 !project/plugins.sbt
-
-!./lib/**/*.jar
-!./lib/**
+!project/build.properties
 
 /tutorial/tutorial.aux
 /tutorial/tutorial.tex
