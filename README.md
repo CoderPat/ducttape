@@ -1,4 +1,4 @@
-Travis CI Build Status: [![Build Status](https://secure.travis-ci.org/jhclark/ducttape.png?branch=master)](http://travis-ci.org/jhclark/ducttape)
+![Scala CI](https://github.com/coderpat/ducttape/actions/workflows/scala-ci.yaml/badge.svg)
 
 Introduction
 ============
