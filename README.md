@@ -1,4 +1,4 @@
-![Scala CI](https://github.com/coderpat/ducttape/actions/workflows/scala-ci.yaml/badge.svg)
+![build](https://github.com/coderpat/ducttape/actions/workflows/scala-ci.yaml/badge.svg)
 
 Introduction
 ============
