@@ -66,6 +66,6 @@ jobs:
 
       - name: Run Integration Tests
         run: | 
-          ls
+          chmod +x ${{ github.workspace }}/dist/ducttape
           ./build-support/test-regression.sh ${{ github.workspace }}/dist/ducttape
 
