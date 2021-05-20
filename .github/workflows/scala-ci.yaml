@@ -25,5 +25,5 @@ jobs:
       run: sbt test
     
     - name: Run Integration Tests
-      run: ./build-support/test-regression.sh dist/ducttape-current
+      run: ./build-support/test-regression.sh ./dist/ducttape-current
 
