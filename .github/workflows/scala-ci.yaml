@@ -22,11 +22,12 @@ jobs:
       run: |
         sbt "set test in assembly := {}" clean assembly
         ./build-support/dist.sh
+        cp --remove-destination `readlink dist/ducttape-current` dist/ducttape
 
     - uses: actions/upload-artifact@master
       with:
         name: ducttape
-        path: dist/ducttape-current
+        path: dist/ducttape
   
   unit-tests:
     runs-on: ubuntu-latest
@@ -59,7 +60,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: ducttape
-          path: dist/ducttape-current
+          path: dist/ducttape
 
       - name: Run Integration Tests
         run: ./build-support/test-regression.sh ${{ github.workspace }}/dist/ducttape-current
