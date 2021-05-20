@@ -24,7 +24,7 @@ jobs:
         ./build-support/dist.sh
         echo `readlink dist/ducttape-current`
         VERSION=$(cat version.info) 
-        cp dist/ducttape-${VERSION} dist/ducttape
+        cp -r dist/ducttape-${VERSION} dist/ducttape
 
     - uses: actions/upload-artifact@master
       with:
@@ -65,5 +65,5 @@ jobs:
           path: dist/ducttape
 
       - name: Run Integration Tests
-        run: ./build-support/test-regression.sh ${{ github.workspace }}/dist/ducttape
+        run: ./build-support/test-regression.sh dist/ducttape
 
