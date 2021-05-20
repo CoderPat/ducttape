@@ -22,8 +22,9 @@ jobs:
       run: |
         sbt "set test in assembly := {}" clean assembly
         ./build-support/dist.sh
-        echo `readlink dist/ducttape-current` 
-        cp --remove-destination `readlink dist/ducttape-current` dist/ducttape
+        echo `readlink dist/ducttape-current`
+        VERSION=$(cat $DUCTTAPE/version.info) 
+        cp dist/ducttape-${VERSION} dist/ducttape
 
     - uses: actions/upload-artifact@master
       with:
