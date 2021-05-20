@@ -63,5 +63,5 @@ jobs:
           path: dist/ducttape
 
       - name: Run Integration Tests
-        run: ./build-support/test-regression.sh ${{ github.workspace }}/dist/ducttape-current
+        run: ./build-support/test-regression.sh ${{ github.workspace }}/dist/ducttape
 
