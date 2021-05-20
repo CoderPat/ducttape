@@ -7,8 +7,9 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -17,5 +18,12 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
-    - name: Run tests
+    - name: Compile and Package
+      run: sbt "set test in assembly := {}" clean assembly
+
+    - name: Run Unit Tests
       run: sbt test
+    
+    - name: Run Integration Tests
+      run: ./build-support/test-regression.sh dist/ducttape-current
+
