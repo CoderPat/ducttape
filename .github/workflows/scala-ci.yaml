@@ -24,6 +24,9 @@ jobs:
     - name: Run Unit Tests
       run: sbt test
     
+    - name: Debug
+      run: ls 
+      
     - name: Run Integration Tests
       run: ./build-support/test-regression.sh ${{ github.workspace }}/dist/ducttape-current
 
