@@ -27,7 +27,7 @@ tar -xvzf ducttape-0.5.0.tgz
 Add ducttape to your PATH:
 
 ```bash
-export PATH=$PWD/ducttape-0.5:$PATH
+export PATH=$PWD/ducttape-0.5.0:$PATH
 ```
 
 Run a tutorial example:
