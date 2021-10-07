@@ -9,6 +9,9 @@ RELEASE_NAME=ducttape-${VERSION}
 #RELEASE_NAME=ducttape-${VERSION}-bleeding-$(date '+%Y-%m-%d')
 DIST_BASE=${DUCTTAPE}/dist
 DIST=${DIST_BASE}/${RELEASE_NAME}
+SCALA_VERSION=2.12
+
+TARGET_JAR=target/scala-${SCALA_VERSION}/ducttape.jar
 
 cd $DUCTTAPE
 
@@ -16,15 +19,12 @@ echo "=============================================="
 echo "Creating Ducttape release for version $VERSION"
 echo "=============================================="
 
-echo "Original JAR stats:"
-du -csh $DUCTTAPE/lib/*.jar $DUCTTAPE/lib/webui/*.jar $DUCTTAPE/lib/scala/*.jar
-
-echo "Shrunken JAR stats:"
-du -csh $DUCTTAPE/ducttape.jar
+echo "JAR stats:"
+du -csh ${DUCTTAPE}/$TARGET_JAR
 
 rm -rf ${DIST}
 mkdir -p ${DIST}
-cp $DUCTTAPE/ducttape.jar ${DIST}/ducttape.jar
+cp $DUCTTAPE/$TARGET_JAR ${DIST}/ducttape.jar
 
 fgrep -v DEV-ONLY $DUCTTAPE/ducttape > ${DIST}/ducttape
 chmod a+x ${DIST}/ducttape

@@ -122,6 +122,6 @@ class HyperWorkflow(val dag: PhantomMetaHyperDag[TaskTemplate,BranchPoint,Branch
       andThen(GlobalBranchPointConstraint).
       andThen(EdgeStateMerger).
       andThen(inPlanConstraint)
-    dag.unpackedWalker[Branch,UnpackState](munger, inPlanConstraint, toD, traversal, observe)(RealizationOrdering)
+    dag.unpackedWalker[Branch,UnpackState](munger, inPlanConstraint, toD _, traversal, observe _)(RealizationOrdering)
   }
 }

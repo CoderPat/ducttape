@@ -1,0 +1,3 @@
+[submodule "tool-support/vscode"]
+	path = tool-support/vscode
+	url = https://github.com/CoderPat/vscode-ducttape

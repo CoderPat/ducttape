@@ -423,7 +423,7 @@ task planned_2 < in=$out@planned_1 :: N=(N: one=1 two=2) M=(M: 1..10) {
 ```
 
  Defining work plans to get more than just one-off experiments (this is intended primarily for config files)
- ducttape can be called with "ducttape -P Basics" to run cross products of branches by adding lines
+ ducttape can be called with "ducttape workflow.tape -p Basics" to run cross products of branches by adding lines
  like the following to config files:
 
 ```
@@ -448,7 +448,7 @@ plan Basics {
 ```
 
 HyperWorkflows: Branch Grafting
-------------------------------
+-------------------------------
 
  Branch points allow you to run a single task and all of its dependents
  under a particular set of conditions (the realization). But what
@@ -606,6 +606,44 @@ submitter sge :: vmem walltime q
   }
 }
 ```
+
+Future Plans
+============
+
+Future Plans: Functions
+-----------------------
+
+```
+package my_tool :: .versioner=disk .path=/ {}
+```
+
+ To define a "task function" in the same file
+ Functions may not declare submitters -- the mapping onto resources is separated out.
+ TODO: Functions will eventually support "default" arguments for parameters such as p
+       Such parameters may either be overridden or omitted at call sites {
+
+```
+func reusable : my_tool < in > out :: p {
+  cat < $in > $out
+  echo "p=$p"
+}
+```
+
+ Using that function or subworkflow later in the file:
+ (Require naming inputs and outputs again for clarity, but commands are ommitted)
+
+```
+task x calls reusable < in=small.txt > out :: p="something"
+```
+
+ Parameters may also be overridden at the call site
+
+```
+task y calls reusable < in=big.txt > out :: p="something else"
+```
+
+ Note: Adding or renaming packages is not allowed
+task bad calls reusable : my_tool < in=small.txt > out
 
 Appendix A: Directory Structure
 -------------------------------

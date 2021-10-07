@@ -1,4 +1,0 @@
-language: scala
-jdk:
-  - openjdk7
-script: ./build-support/full_build_server_test.sh

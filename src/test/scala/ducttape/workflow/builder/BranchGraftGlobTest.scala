@@ -8,6 +8,7 @@ import ducttape.workflow.BranchFactory
 import ducttape.workflow.BranchPoint
 import ducttape.workflow.BranchPointFactory
 import org.scalatest.WordSpec
+import org.scalatest.Assertions._
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -46,7 +47,7 @@ class BranchGraftGlobTest extends WordSpec {
 
       val expandedBranchGraftElements = BranchGraftGlob.expand(unexpandedBranchGraftElements, branchPointFactory, branchFactory)
 
-      expectResult(1)(expandedBranchGraftElements.size)
+      assertResult(1)(expandedBranchGraftElements.size)
 
       assertEqual(unexpandedBranchGraftElements, expandedBranchGraftElements.head)
 
@@ -65,7 +66,7 @@ class BranchGraftGlobTest extends WordSpec {
 
       val expandedBranchGraftElements = BranchGraftGlob.expand(unexpandedBranchGraftElements, branchPointFactory, branchFactory)
 
-      expectResult(branchesPerBranchPoint)(expandedBranchGraftElements.size)
+      assertResult(branchesPerBranchPoint)(expandedBranchGraftElements.size)
 
     }
   }  
@@ -81,7 +82,7 @@ class BranchGraftGlobTest extends WordSpec {
 
       val expandedBranchGraftElements = BranchGraftGlob.expand(unexpandedBranchGraftElements, branchPointFactory, branchFactory)
 
-      expectResult(branchesPerBranchPoint*branchesPerBranchPoint)(expandedBranchGraftElements.size)
+      assertResult(branchesPerBranchPoint*branchesPerBranchPoint)(expandedBranchGraftElements.size)
 
     }
   }    
@@ -97,7 +98,7 @@ class BranchGraftGlobTest extends WordSpec {
 
       val expandedBranchGraftElements = BranchGraftGlob.expand(unexpandedBranchGraftElements, branchPointFactory, branchFactory)
 
-      expectResult(Math.pow(branchesPerBranchPoint, 3))(expandedBranchGraftElements.size)
+      assertResult(Math.pow(branchesPerBranchPoint, 3))(expandedBranchGraftElements.size)
 
     }
   }    

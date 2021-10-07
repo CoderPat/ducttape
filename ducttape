@@ -1,20 +1,10 @@
 #!/usr/bin/env bash
 set -ueo pipefail
 scriptDir=$(cd $(dirname $0); pwd)
+echo $scriptDir
+scala_version=2.12
 
-# TODO: Use drip for fast JVM startup, if installed
-#       But currently drip appears to be unstable
-#export JAVA=$(which drip)
-#if [[ "$JAVA" == "/"* ]]; then
-#    echo >/dev/null; # we found drip
-#else
-#    echo >&2 "drip not found. Falling back to vanilla Java"
-#    JAVA="java"
-#fi
-JAVA="java"
-
-#     -XX:MaxJavaStackTraceDepth=25 \
-$JAVA -Xmx1g -Xss2M \
+java -Xmx1g -Xss2M \
      -cp $scriptDir/ducttape.jar \
      -Dfile.encoding="UTF-8" \
      Ducttape "$@"

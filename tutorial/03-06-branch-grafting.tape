@@ -1,5 +1,5 @@
 # Chapter 3: HyperWorkflows
-# Lesson 6:  Branch Grating
+# Lesson 6:  Branch Grafting
 
 # Branch points allow you to run a single task and all of its dependents
 # under a particular set of conditions (the realization). But what

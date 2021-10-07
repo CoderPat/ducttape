@@ -1,3 +1,14 @@
+v0.5: October 07, 2021
+==================
+* Update scala version to 2.12
+* Updated dependencies needed to support 2.12
+* Change build system to use SBT everywhere. This includes dependencies and packaging
+* Change CI to GitHub actions
+* Add Slurm submitter as a bultin
+
+v0.4: Unknown
+==================
+
 v0.3: Jan 28, 2013
 ==================
 

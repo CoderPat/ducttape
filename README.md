@@ -1,4 +1,4 @@
-Travis CI Build Status: [![Build Status](https://secure.travis-ci.org/jhclark/ducttape.png?branch=master)](http://travis-ci.org/jhclark/ducttape)
+![build](https://github.com/coderpat/ducttape/actions/workflows/scala-ci.yaml/badge.svg)
 
 Introduction
 ============
@@ -20,20 +20,20 @@ Quick Start
 First, download and unpack the program:
 
 ```bash
-wget http://www.cs.cmu.edu/~jhclark/downloads/ducttape-0.3.tgz
-tar -xvzf ducttape-0.3.tgz
+wget http://www.cs.cmu.edu/~jhclark/downloads/ducttape-0.5.tar.gz
+tar -xvzf ducttape-0.3.tar.gz
 ```
 
 Add ducttape to your PATH:
 
 ```bash
-export PATH=$PWD/ducttape-0.3:$PATH
+export PATH=$PWD/ducttape-0.5:$PATH
 ```
 
 Run a tutorial example:
 
 ```bash
-cd ducttape-0.3/tutorial
+cd ducttape-0.5/tutorial
 ducttape 01-01-hello-world.tape
 ```
 
@@ -48,16 +48,16 @@ ducttape tutorial.tape -C tutorial.tconf -j2
 ducttape tutorial.tape -C tutorial.tconf summary scores
 ```
 
-What's next? Read [TUTORIAL.md](https://github.com/jhclark/ducttape/blob/master/tutorial/TUTORIAL.md).
+What's next? Read [TUTORIAL.md](https://github.com/CoderPat/ducttape/blob/master/tutorial/TUTORIAL.md).
 
 
 System-wide Installation
 ========================
 
 ```bash
-wget http://www.cs.cmu.edu/~jhclark/downloads/ducttape-0.3.tgz
-tar -xvzf ducttape-0.3.tgz
-cd ducttape 0.3
+wget http://www.cs.cmu.edu/~jhclark/downloads/ducttape-0.5.tgz
+tar -xvzf ducttape-0.5.tgz
+cd ducttape 0.5
 sudo make install
 ```
 
@@ -75,13 +75,10 @@ Design Principles
 Updates
 =======
 
-To keep updated on the latest versions of ducttape, subscribe to our low-traffic announcement mailing list: https://groups.google.com/group/ducttape-announce
+We are still formalizing a way to disseminate updates to ducttape. Stay tuned!
 
-If you have questions about how to use ducttape, please post on StackOverflow using the tag "ducttape": http://stackoverflow.com/questions/ask?tags=ducttape. If you'd like to help other ducttape users or keep up with questions being asked about ducttape, please use http://stackexchange.com/filters/new to create a daily email subscription to StackExchange questions with the tag "ducttape".
-
-To stay in the loop on ducttape development, subscribe to our higher traffic development mailing list: https://groups.google.com/group/ducttape-dev
-
-To keep updated on bleeding edge development of ducttape, subscribe to our higher traffic commits mailing list: https://groups.google.com/group/ducttape-commits
+If you have questions about how to use ducttape, please post on StackOverflow using the tag "ducttape": http://stackoverflow.com/questions/ask?tags=ducttape. 
+If you'd like to help other ducttape users or keep up with questions being asked about ducttape, please use http://stackexchange.com/filters/new to create a daily email subscription to StackExchange questions with the tag "ducttape".
 
 
 Emacs Mode
@@ -98,9 +95,9 @@ Vim Mode
 
 To get syntax highlighting in vim, copy (or symlink) the ducttape's vim syntax highlighting file, like so:
 
-```
-$ mkdir -p ~/.vim/syntax
-$ cp $PATH_TO_DUCTTAPE_HERE/tool-support/vim/ducttape.vim ~/.vim/syntax/ducctape.vim
+```bash
+mkdir -p ~/.vim/syntax
+cp $PATH_TO_DUCTTAPE_HERE/tool-support/vim/ducttape.vim ~/.vim/syntax/ducctape.vim
 ```
 
 Then add a line to your ~/.vimrc to create an association with .tape files:
@@ -110,6 +107,14 @@ syntax on
 filetype on
 au BufRead,BufNewFile *.tape set filetype=ducttape
 ```
+
+VSCode Mode
+===========
+If you use Visual Studio Code, there is also an extension for ducttape on the store that provides syntax highlighting
+
+You can also instal it manually. Check the instructions in `tool-support/vscode`.
+
+**NOTE**: The grammar for the extension is still incomplete.
 
 Related Projects
 ================
