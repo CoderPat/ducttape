@@ -1,5 +1,4 @@
-submitter slurm :: cpus gres mem time nodelist exclude
-                :: COMMANDS 
+submitter slurm :: COMMANDS 
                 :: TASK REALIZATION CONFIGURATION {
     action run > exit_code {
         # Returns true iff the first parameter 
@@ -38,6 +37,8 @@ submitter slurm :: cpus gres mem time nodelist exclude
         if (var_defined exclude); then
             SLURM_ARGS+=" --exclude=$exclude"
         fi
+
+        echo $SLURM_ARGS
 
         srun $SLURM_ARGS bash $wrapper
   }
