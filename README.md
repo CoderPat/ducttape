@@ -21,7 +21,7 @@ First, download and unpack the program:
 
 ```bash
 wget https://github.com/CoderPat/ducttape/releases/download/v0.5/ducttape-0.5.0.tgz
-tar -xvzf ducttape-0.5.tgz
+tar -xvzf ducttape-0.5.0.tgz
 ```
 
 Add ducttape to your PATH:
@@ -33,7 +33,7 @@ export PATH=$PWD/ducttape-0.5:$PATH
 Run a tutorial example:
 
 ```bash
-cd ducttape-0.5/tutorial
+cd ducttape-0.5.0/tutorial
 ducttape 01-01-hello-world.tape
 ```
 
@@ -56,8 +56,8 @@ System-wide Installation
 
 ```bash
 wget https://github.com/CoderPat/ducttape/releases/download/v0.5/ducttape-0.5.0.tgz
-tar -xvzf ducttape-0.5.tgz
-cd ducttape 0.5
+tar -xvzf ducttape-0.5.0tgz
+cd ducttape-0.5.0
 sudo make install
 ```
 
