@@ -20,8 +20,8 @@ Quick Start
 First, download and unpack the program:
 
 ```bash
-wget http://www.cs.cmu.edu/~jhclark/downloads/ducttape-0.5.tar.gz
-tar -xvzf ducttape-0.3.tar.gz
+wget https://github.com/CoderPat/ducttape/releases/download/v0.5/ducttape-0.5.0.tgz
+tar -xvzf ducttape-0.5.tgz
 ```
 
 Add ducttape to your PATH:
@@ -55,7 +55,7 @@ System-wide Installation
 ========================
 
 ```bash
-wget http://www.cs.cmu.edu/~jhclark/downloads/ducttape-0.5.tgz
+wget https://github.com/CoderPat/ducttape/releases/download/v0.5/ducttape-0.5.0.tgz
 tar -xvzf ducttape-0.5.tgz
 cd ducttape 0.5
 sudo make install
