@@ -2,12 +2,12 @@
 DUCTTAPE:=$(shell dirname $(realpath $(lastword ${MAKEFILE_LIST})))
 SBT:=sbt
 
-SRC_FILES=$(shell find src -type f)
+SRC_FILES=$(shell find src builtins -type f)
 
 compile: ${SRC_FILES}
 	${SBT} compile
 
-dist: ${SRC_FILES}
+dist: ${SRC_FILES} logging.properties build.sbt
 	${SBT} assembly
 	bash ${DUCTTAPE}/build-support/dist.sh
 
@@ -15,7 +15,7 @@ doc:
 	${SBT} doc
 	${DUCTTAPE}/build-support/doc.sh ${DUCTTAPE}/dist/ducttape-current
 
-test-unit: ${SRC_FILES}
+test-unit: ${SRC_FILES} logging.properties build.sbt
 	${SBT} test
 
 # Run regression tests using the distribution version
