@@ -110,7 +110,7 @@ au BufRead,BufNewFile *.tape set filetype=ducttape
 
 VSCode Mode
 ===========
-If you use Visual Studio Code, there is also an extension for ducttape on the store
+If you use Visual Studio Code, there is also an extension for ducttape on the store that provides syntax highlighting
 
 You can also instal it manually. Check the instructions in `tool-support/vscode`.
 
