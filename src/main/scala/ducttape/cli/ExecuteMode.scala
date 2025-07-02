@@ -148,9 +148,9 @@ object ExecuteMode {
               }
             }
             try {
-              Visitors.visitAll(workflow,
-                                new Executor(dirs, packageVersions, planPolicy, locker, workflow, cc.completed, cc.todo, observers=Seq(failObserver)),
-                                planPolicy, committedVersion, opts.jobs(), traversal)
+              Visitors.visitAllThreaded(workflow,
+                                        new Executor(dirs, packageVersions, planPolicy, locker, workflow, cc.completed, cc.todo, observers=Seq(failObserver)),
+                                        planPolicy, committedVersion, opts.jobs(), traversal)
             } catch {
               case t: Throwable => {
                 System.err.println(s"${Config.errorColor}The following tasks failed:${Config.resetColor}")

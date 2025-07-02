@@ -14,3 +14,7 @@ trait UnpackedRealDagVisitor {
 trait UnpackedDagVisitor {
   def visit(task: VersionedTask)
 }
+
+trait ThreadedDagVisitor {
+  def visit(task: VersionedTask, threadId: Int)
+}

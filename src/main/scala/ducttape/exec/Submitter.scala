@@ -25,7 +25,7 @@ import ducttape.workflow.RealTask
 
 object Submitter {
   // some special variables are passed without user intervention
-  val SPECIAL_VARIABLES = Set("COMMANDS", "TASK_VARIABLES", "TASK", "REALIZATION", "CONFIGURATION")
+  val SPECIAL_VARIABLES = Set("COMMANDS", "TASK_VARIABLES", "TASK", "REALIZATION", "CONFIGURATION", "THREAD_ID")
 }
 
 class Submitter(submitters: Seq[SubmitterDef]) extends Logging {
@@ -68,7 +68,7 @@ class Submitter(submitters: Seq[SubmitterDef]) extends Logging {
       }
     }
 
-  def run(taskEnv: FullTaskEnvironment) {
+  def run(taskEnv: FullTaskEnvironment, threadId: Int) {
     val submitterDef: SubmitterDef = getSubmitter(taskEnv.task)
     val requiredParams: Set[String] = submitterDef.params.map(_.name).toSet
     // only include the dot params from the task that are explicitly requested by the submitter
@@ -87,6 +87,7 @@ class Submitter(submitters: Seq[SubmitterDef]) extends Logging {
           ("TASK", taskEnv.task.name),
           ("REALIZATION", taskEnv.task.realization.toString),
           ("TASK_VARIABLES", taskEnv.taskVariables),
+          ("THREAD_ID", threadId.toString),
           ("COMMANDS", taskEnv.task.commands.toString)) ++
         dotParamsEnv ++ taskEnv.env
         

@@ -41,7 +41,7 @@ trait Walker[A] extends Iterable[A] with Logging { // TODO: Should this be a Tra
 
   // TODO: Add a .par(j) method that returns a parallel walker
   // j = numCores (as in make -j)
-  def foreach[U](j: Int, f: A => U) {
+  def foreach[U](j: Int, f: (A, Int) => U) {
     import java.util.concurrent._
     import collection.JavaConversions._
 
@@ -70,7 +70,7 @@ trait Walker[A] extends Iterable[A] with Logging { // TODO: Should this be a Tra
               var success = true
               try {
                 debug("Executing callback for %s".format(a))
-                f(a)
+                f(a, i)
               } catch {
                 // catch exceptions happening within the callback
                 case t: Throwable => {
@@ -104,4 +104,6 @@ trait Walker[A] extends Iterable[A] with Logging { // TODO: Should this be a Tra
     // call get on each future so that we propagate any exceptions
     futures.foreach(_.get)
   }
+
+  def foreach[U](j: Int, f: A => U): Unit = foreach(j, (a: A, _: Int) => f(a))
 }
