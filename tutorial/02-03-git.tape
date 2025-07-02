@@ -16,7 +16,7 @@ task lunchtime : lunchpy {
 }
 
 # * Build commands are only called when versioner indicates a new version
-package lunchpy :: .versioner=git .repo="git://github.com/mjdenkowski/lunchpy.git" .ref=HEAD {
+package lunchpy :: .versioner=git .repo="https://github.com/mjdenkowski/lunchpy.git" .ref=HEAD {
   # We don't actually need to compile anything for python code,
   # but for the sake of example we'll make this program run a bit faster
   python -m compileall .
