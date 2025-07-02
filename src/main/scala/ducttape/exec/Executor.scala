@@ -20,13 +20,13 @@ class Executor(val dirs: DirectoryArchitect,
                val workflow: HyperWorkflow,
                val alreadyDone: Set[(String,Realization)],
                val todo: Set[(String,Realization)],
-               observers: Seq[ExecutionObserver] = Nil) extends UnpackedDagVisitor with Logging {
+               observers: Seq[ExecutionObserver] = Nil) extends ThreadedDagVisitor with Logging {
   
   val submitter = new Submitter(workflow.submitters)
 
   observers.foreach(_.init(this))
 
-  override def visit(task: VersionedTask) {
+  override def visit(task: VersionedTask, threadId: Int) {
     if (todo( (task.name, task.realization) )) {
       
       val taskEnv = new FullTaskEnvironment(dirs, packageVersioner, task)
@@ -50,14 +50,14 @@ class Executor(val dirs: DirectoryArchitect,
         // while we were waiting on the lock
         if (!CompletionChecker.isComplete(taskEnv)) {
           
-          System.err.println(s"Running ${task} in ${taskEnv.where.getAbsolutePath}")
+          System.err.println(s"Running ${task} in ${taskEnv.where.getAbsolutePath} on thread ${threadId}")
           observers.foreach(_.begin(this, taskEnv))
 
           Files.mkdirs(taskEnv.where)          
           debug(s"Environment for ${task} is ${taskEnv.env}")
     
           // the "run" action of the submitter will throw if the exit code is non-zero
-          submitter.run(taskEnv)
+          submitter.run(taskEnv, threadId)
           
           def incompleteCallback(task: VersionedTask, msg: String) {
             System.err.println(s"${task}: ${msg}")

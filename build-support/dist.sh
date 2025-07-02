@@ -26,6 +26,9 @@ rm -rf ${DIST}
 mkdir -p ${DIST}
 cp $DUCTTAPE/$TARGET_JAR ${DIST}/ducttape.jar
 
+# add version.info to the JAR
+zip -g ${DIST}/ducttape.jar version.info
+
 fgrep -v DEV-ONLY $DUCTTAPE/ducttape > ${DIST}/ducttape
 chmod a+x ${DIST}/ducttape
 cp $DUCTTAPE/tabular ${DIST}/tabular

@@ -5,6 +5,7 @@ package ducttape.workflow
 import collection._
 import ducttape.exec.UnpackedRealDagVisitor
 import ducttape.exec.UnpackedDagVisitor
+import ducttape.exec.ThreadedDagVisitor
 import ducttape.versioner.WorkflowVersionInfo
 import ducttape.workflow.Types.UnpackedWorkVert
 import ducttape.hyperdag.walker.Traversal
@@ -44,6 +45,24 @@ object Visitors extends Logging {
       val task: VersionedTask = taskT.toRealTask(v).toVersionedTask(workflowVersion)
       debug(s"Visiting ${task}")
       visitor.visit(task)
+    })
+    visitor
+  }
+
+  def visitAllThreaded[A <: ThreadedDagVisitor](
+      workflow: HyperWorkflow,
+      visitor: A,
+      planPolicy: PlanPolicy,
+      workflowVersion: WorkflowVersionInfo,
+      numCores: Int = 1,
+      traversal: Traversal = Arbitrary): A = {
+    
+    debug(s"Visiting workflow using traversal: ${traversal}")
+    workflow.unpackedWalker(planPolicy, traversal=traversal).foreach(numCores, { (v: UnpackedWorkVert, threadId: Int) =>
+      val taskT: TaskTemplate = v.packed.value.get
+      val task: VersionedTask = taskT.toRealTask(v).toVersionedTask(workflowVersion)
+      debug(s"Visiting ${task} on thread ${threadId}")
+      visitor.visit(task, threadId)
     })
     visitor
   }

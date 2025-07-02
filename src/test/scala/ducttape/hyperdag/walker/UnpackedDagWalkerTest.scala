@@ -154,4 +154,31 @@ class UnpackedDagWalkerTest extends FlatSpec with Logging{
     }
     timer.interrupt()
   }
+
+  it should "traverse a diamond with the threaded walker and pass threadId" in {
+    val numThreads = 2
+    val vertsToThreads = new collection.mutable.HashMap[String, Int]()
+    val seenThreads = new collection.mutable.HashSet[Int]()
+
+    diamond.unpackedWalker(traversal=Arbitrary).foreach(numThreads, { (v, threadId) =>
+      Thread.sleep(10) // Add a small delay to ensure multiple threads are used
+      vertsToThreads.synchronized {
+        vertsToThreads(v.packed.value) = threadId
+        seenThreads += threadId
+      }
+    })
+
+    // Check that all vertices were visited
+    val expectedVerts = Set("Vertex A", "Vertex B", "Vertex C", "Vertex D")
+    assert(vertsToThreads.keySet == expectedVerts, s"Vertices visited: ${vertsToThreads.keySet}")
+
+    // Check that threadIds are in the expected range
+    assert(seenThreads.subsetOf((0 until numThreads).toSet), s"Thread IDs used: $seenThreads")
+
+    // Check that more than one thread was used
+    assert(seenThreads.size > 1, s"Expected more than one thread, got: $seenThreads")
+
+    // TODO: Check thread mapping is expected
+    // Can I make any guarantees about the thread mapping?
+  }
 }
